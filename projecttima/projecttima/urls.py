@@ -18,9 +18,20 @@ from django.contrib import admin
 from django.urls import path, include
 from django.urls import path
 from .views import restricted_page
+from django.contrib import admin
+from django.urls import path, include
+from django.urls import path
+from .views import PostCreateView, PostEditView, profile_view
+
 
 urlpatterns = [
     path('restricted/', restricted_page, name='restricted_page'),
+    path('admin/', admin.site.urls),
+    path('accounts/', include('allauth.urls')),
+    path('', include('news.urls')),
+    path('create/', PostCreateView.as_view(), name='post_create'),
+    path('edit/<int:pk>/', PostEditView.as_view(), name='post_edit'),
+    path('profile/', profile_view, name='profile'),
 ]
 
 
