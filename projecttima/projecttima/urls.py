@@ -22,6 +22,8 @@ from django.contrib import admin
 from django.urls import path, include
 from django.urls import path
 from .views import PostCreateView, PostEditView, profile_view
+from django.urls import path
+from .views import ArticleDetailView, CategoryListView
 
 
 urlpatterns = [
@@ -38,4 +40,8 @@ urlpatterns = [
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('pages/', include('django.contrib.flatpages.urls')),
+]
+urlpatterns = [
+    path('article/<int:pk>/', ArticleDetailView.as_view(), name='article_detail'),
+    path('category/<int:pk>/', CategoryListView.as_view(), name='category_detail'),
 ]

@@ -22,3 +22,9 @@ class Migration(migrations.Migration):
     operations = [
         migrations.RunPython(create_groups),
     ]
+    from __future__ import absolute_import, unicode_literals
+
+    # Эта строка позволяет применять нижеуказанные настройки.
+    from .celery import app as celery_app
+
+    __all__ = ('celery_app',)
