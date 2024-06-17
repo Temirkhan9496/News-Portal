@@ -1,0 +1,11 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>New Article in {{ category.name }}</title>
+</head>
+<body>
+    <h1>{{ article.title }}</h1>
+    <p>{{ article.content|truncatewords:30 }}</p>
+    <p><a href="{% url 'article_detail' pk=article.pk %}">Read more</a></p>
+</body>
+</html>
