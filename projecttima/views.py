@@ -36,3 +36,16 @@ from django.shortcuts import render
 @login_required
 def restricted_page(request):
     return HttpResponse("только для зарегистрированных пользователей")
+
+
+from django.core.mail import send_mail
+from django.template.loader import render_to_string
+
+def send_verification_email(email, verification_code):
+    subject = 'Подтверждение регистрации'
+    message = render_to_string('verification_email.html', {'verification_code': verification_code})
+    send_mail(subject, message, 'admin@mmorpg_board.com', [email])
+
+def send_notification_email(email, message):
+    subject = 'Уведомление'
+    send_mail(subject, message, 'admin@mmorpg_board.com', [email])
